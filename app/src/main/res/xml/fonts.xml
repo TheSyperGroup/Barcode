@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<familyset>
+    <!--  Roboto -->
+    <family>
+        <nameset>
+            <name>roboto</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Roboto-Regular.ttf</file>
+            <file>fonts/Roboto-Thin.ttf</file>
+            <file>fonts/RobotoCondensed-Bold.ttf</file>
+            <file>fonts/RobotoCondensed-Light.ttf</file>
+        </fileset>
+    </family>
+    <!--  Roboto-Light-->
+    <family>
+        <nameset>
+            <name>roboto-light</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Roboto-Light.ttf</file>
+        </fileset>
+    </family>
+
+</familyset>
+
+

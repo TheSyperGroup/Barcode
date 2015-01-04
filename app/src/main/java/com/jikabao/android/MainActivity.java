@@ -9,15 +9,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener{
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     Button scannerButton;
     Button generateButton;
+    TextView buildInfo;
     EditText input;
 
     @Override
@@ -28,13 +30,22 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         init();
     }
 
-    private void init(){
-        scannerButton = (Button)findViewById(R.id.scannerButton);
-        generateButton = (Button)findViewById(R.id.generatorButton);
-        input = (EditText)findViewById(R.id.inputEditText);
+    private void init() {
+        scannerButton = (Button) findViewById(R.id.scannerButton);
+        generateButton = (Button) findViewById(R.id.generatorButton);
+        input = (EditText) findViewById(R.id.inputEditText);
+        buildInfo = (TextView) findViewById(R.id.buildInfo);
 
         scannerButton.setOnClickListener(this);
         generateButton.setOnClickListener(this);
+
+        buildInfo.append("" + BuildConfig.BUILD_DATE + '\n');
+        buildInfo.append("" + BuildConfig.BUILD_TYPE + '\n');
+        buildInfo.append("" + BuildConfig.GIT_BRANCH + '\n');
+        buildInfo.append("" + BuildConfig.GIT_COMMIT_ID + '\n');
+        buildInfo.append("" + BuildConfig.VERSION_NAME + '\n');
+        buildInfo.append("" + BuildConfig.VERSION_CODE + '\n');
+        buildInfo.append("" + BuildConfig.FLAVOR + '\n');
     }
 
     @Override
@@ -63,7 +74,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
 
-        switch (id){
+        switch (id) {
             case R.id.scannerButton:
                 startScanner();
 
@@ -72,12 +83,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 encodeBarcode();
                 break;
 
-            default:break;
+            default:
+                break;
         }
 
     }
 
-    private void startScanner(){
+    private void startScanner() {
         IntentIntegrator integrator = new IntentIntegrator(this);
 //        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
@@ -90,7 +102,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     public void encodeBarcode() {
         String text = input.getText().toString();
-        if (TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             Toast.makeText(this, "Input some text!", Toast.LENGTH_LONG).show();
             return;
         }
@@ -101,8 +113,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
+        if (result != null) {
+            if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 input.setText(result.getContents());

@@ -9,29 +9,103 @@ repositories {
 
 apply plugin: 'com.android.application'
 
+def getBuildDate() {
+    return new Date().format('yyyy/MM/dd HH:mm:ss')
+}
+
+def getGitCommitId() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim();
+}
+
+def getGitBranch() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim();
+}
+
+def isGitDirty = {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'status', '--porcelain'
+        standardOutput = stdout
+    }
+    return !stdout.toString().isEmpty();
+}
+
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.0.2"
+    compileSdkVersion 19
+    buildToolsVersion "19.1"
 
     defaultConfig {
         applicationId "com.jikabao.android"
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 19
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+
+        buildConfigField "String", "BUILD_DATE", '\"' + getBuildDate() + '\"'
+        buildConfigField "String", "GIT_COMMIT_ID", '\"' + getGitCommitId() + '\"'
+        buildConfigField "String", "GIT_BRANCH", '\"' + getGitBranch() + '\"'
+        buildConfigField "boolean", "GIT_DIRTY", "new Boolean(\"" + isGitDirty() + "\")"
     }
+
+    signingConfigs {
+        jikabao {
+            storeFile file("jikabao.keystore")
+            storePassword "jikabao2015"
+            keyAlias "jikabao"
+            keyPassword "jikabao2015"
+        }
+    }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.jikabao
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.jikabao
+        }
+    }
+
+    flavorDimensions "product", "environment"
+
+    productFlavors {
+        // Products
+        jikabao {
+            flavorDimension "product"
+            applicationId "com.jikabao.android.store"
+        }
+
+        // uat
+        uat {
+            flavorDimension "environment"
+        }
+
+        // live
+        live {
+            flavorDimension "environment"
         }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:19.0.+'
 
     // Supports Android 4.0.3 and later (API level 15)
     compile 'com.journeyapps:zxing-android-embedded:2.0.1@aar'
@@ -53,4 +127,53 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'com.squareup:otto:1.3.5'
 //    compile 'com.github.qiujuer:genius:0.7.5'
+
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'com.github.tony19:logback-android-classic:1.0.10-2'
+    compile 'com.github.tony19:logback-android-core:1.0.10-2'
+}
+
+
+
+// Create tasks to assemble specially named snapshot and release for each flavour
+
+task assembleSnapshotApks(description: "Assemble and name APKs for snapshot distribution") << {}
+task assembleReleaseApks(description: "Assemble and name APKs for release distribution") << {}
+
+android.productFlavors.all { flavor ->
+    def product = flavor.name.capitalize()
+
+    def snapshotTask = task "assembleSnapshotApks$product"(dependsOn: "assemble$product",
+            description: "Assemble and name snapshot APKs for $product product")
+
+    def releaseTask = task "assembleReleaseApks$product"(dependsOn: "assemble$product",
+            description: "Assemble and name release APKs for $product product")
+
+    assembleSnapshotApks.dependsOn snapshotTask;
+    assembleReleaseApks.dependsOn releaseTask;
+
+    // When we build for distribution using either of the two tasks above, we will name the output accordingly
+    gradle.taskGraph.whenReady { taskGraph ->
+        android.applicationVariants.all { variant ->
+            // Rename the APK if the variant matches this flavor
+            if (variant.name.startsWith(flavor.name)) {
+                def apk = variant.outputs[0].outputFile;
+                if (taskGraph.hasTask(snapshotTask)) {
+                    def timestamp = new Date().format("yyyy-MM-dd-HH-mm")
+                    def newName = apk.name.replace(".apk", "-" + android.defaultConfig.versionName + "-${timestamp}.apk");
+                    if (variant.buildType.name.equals("debug")) { // Debug is for any env, remove 'uat' to be clear
+                        newName = newName.replace("-uat", "")
+                    }
+                    variant.outputs[0].outputFile = file("${apk.parentFile}/${newName}")
+
+                } else if (taskGraph.hasTask(releaseTask)) {
+                    def newName = apk.name.replace(".apk", "-" + android.defaultConfig.versionName + ".apk");
+                    if (variant.buildType.name.equals("debug")) { // Debug is for any env, remove 'uat' to be clear
+                        newName = newName.replace("-uat", "")
+                    }
+                    variant.outputs[0].outputFile = file("${apk.parentFile}/${newName}")
+                }
+            }
+        }
+    }
 }

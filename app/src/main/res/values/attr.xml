@@ -1,0 +1,16 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+           xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The default value of smallestWidthDpd will only be used on unsupported devices.
+         This must be overridden for supported minimum sizes. -->
+    <string name="smallestWidthDpd" />
+
+    <declare-styleable name="Fonts">
+        <!-- using android's -->
+        <attr name="android:textStyle" />
+
+        <!-- our custom attribute -->
+        <attr name="fontFamily" format="string" />
+    </declare-styleable>
+
+</resources>

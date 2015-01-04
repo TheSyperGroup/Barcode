@@ -1,0 +1,4 @@
+<resources>
+    <string name="hostname">uat.jikabao.com</string>
+    <string name="httpsScheme">https://</string>
+</resources>
