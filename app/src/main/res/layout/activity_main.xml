@@ -43,13 +43,13 @@
         />
     <ImageView
         android:layout_below="@id/generateButton"
-        android:layout_centerHorizontal="true"
         android:id="@+id/qrImageView"
-        android:layout_width="100dip"
-        android:layout_height="100dip" />
+        android:layout_width="150dip"
+        android:layout_height="150dip" />
 
     <TextView
-        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/qrImageView"
+        android:layout_below="@id/generateButton"
         android:id="@+id/buildInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
