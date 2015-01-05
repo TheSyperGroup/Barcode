@@ -1,6 +1,8 @@
 package com.jikabao.android;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,17 +11,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     Button scannerButton;
+    Button shareButton;
     Button generateButton;
     TextView buildInfo;
+    ImageView qrImageView;
     EditText input;
 
     @Override
@@ -32,11 +41,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void init() {
         scannerButton = (Button) findViewById(R.id.scannerButton);
-        generateButton = (Button) findViewById(R.id.generatorButton);
+        shareButton = (Button) findViewById(R.id.shareButton);
+        generateButton = (Button) findViewById(R.id.generateButton);
+        qrImageView = (ImageView) findViewById(R.id.qrImageView);
         input = (EditText) findViewById(R.id.inputEditText);
         buildInfo = (TextView) findViewById(R.id.buildInfo);
 
         scannerButton.setOnClickListener(this);
+        shareButton.setOnClickListener(this);
         generateButton.setOnClickListener(this);
 
         buildInfo.append("" + BuildConfig.BUILD_DATE + '\n');
@@ -79,8 +91,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 startScanner();
 
                 break;
-            case R.id.generatorButton:
-                encodeBarcode();
+            case R.id.shareButton:
+                shareBarcode();
+                break;
+
+            case R.id.generateButton:
+                generateQRCode();
                 break;
 
             default:
@@ -100,7 +116,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         integrator.initiateScan();
     }
 
-    public void encodeBarcode() {
+    public void shareBarcode() {
         String text = input.getText().toString();
         if (TextUtils.isEmpty(text)) {
             Toast.makeText(this, "Input some text!", Toast.LENGTH_LONG).show();
@@ -126,4 +142,40 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
+
+    private void generateQRCode(){
+        String text = input.getText().toString();
+        if (TextUtils.isEmpty(text)) {
+            Toast.makeText(this, "Input some text!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            BitMatrix matrix = writer.encode(text, BarcodeFormat.QR_CODE, 400, 400
+            );
+            Bitmap bitmap = toBitmap(matrix);
+            qrImageView.setImageBitmap(bitmap);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Writes the given Matrix on a new Bitmap object.
+     * @param matrix the matrix to write.
+     * @return the new {@link Bitmap}-object.
+     */
+    public static Bitmap toBitmap(BitMatrix matrix){
+        int height = matrix.getHeight();
+        int width = matrix.getWidth();
+        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        for (int x = 0; x < width; x++){
+            for (int y = 0; y < height; y++){
+                bmp.setPixel(x, y, matrix.get(x,y) ? Color.BLACK : Color.WHITE);
+            }
+        }
+        return bmp;
+    }
 }

@@ -25,22 +25,29 @@
         android:layout_below="@id/scannerButton" />
 
     <Button
-        android:id="@+id/generatorButton"
+        android:id="@+id/shareButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/inputEditText"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Generate QR Code" />
+        android:text="Share QR Code" />
 
     <com.jikabao.android.view.EFStyledButton
-        android:layout_below="@id/generatorButton"
-        android:id="@+id/btnLogin"
+        android:layout_below="@id/shareButton"
+        android:id="@+id/generateButton"
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:text="arialmt"
+        android:text="Generate QR Code"
         app:fontFamily="arialmt"
         />
+    <ImageView
+        android:layout_below="@id/generateButton"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/qrImageView"
+        android:layout_width="100dip"
+        android:layout_height="100dip" />
+
     <TextView
         android:layout_alignParentBottom="true"
         android:id="@+id/buildInfo"
