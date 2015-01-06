@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JiKa</string>
+    <string name="app_name">JiKa(Merchant)</string>
     <string name="action_settings">Settings</string>
+    <string name="welcome_to_jikabao_merchant">Welcome to use the Jikabao Merchant Application</string>
+    <string name="hint_username">username</string>
+    <string name="hint_password">password</string>
+    <string name="login">Login</string>
+    <string name="login_please_wait">please wait...</string>
+    <string name="login_success">Login success</string>
+    <string name="username_is_empty">Username is empty</string>
+    <string name="password_is_empty">Password is empty</string>
+    <string name="about">About</string>
 
 </resources>

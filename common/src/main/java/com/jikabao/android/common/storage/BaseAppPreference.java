@@ -15,14 +15,17 @@ public class BaseAppPreference {
     protected static final String PREF_VISITNUM = "visitNum";
     protected static final String PREFERENCE = "app_preference";
     protected static final String PREF_userId= "userId";
+    protected static final String PREF_userPassword= "password";
 
     //Cache some values.
     protected int visitNum;
     protected String userId;
+    protected String userPassword;
 
     public BaseAppPreference() {
         visitNum = get(PREF_VISITNUM, 0);
         userId = get(PREF_userId, "");
+        userPassword = get(PREF_userPassword, "");
     }
 
     public static BaseAppPreference getInstance(){
@@ -88,6 +91,15 @@ public class BaseAppPreference {
     public void setUserId(String userId){
         set(PREF_userId, userId);
         this.userId = userId;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        set(PREF_userPassword, userPassword);
+        this.userPassword = userPassword;
     }
 
     public void clear() {

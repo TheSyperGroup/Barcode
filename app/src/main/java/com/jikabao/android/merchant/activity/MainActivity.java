@@ -1,4 +1,4 @@
-package com.jikabao.android.merchant;
+package com.jikabao.android.merchant.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,13 +17,18 @@ import com.google.zxing.integration.android.IntentResult;
 import com.jikabao.android.common.activity.BaseActivity;
 import com.jikabao.android.common.util.BarcodeUtil;
 import com.jikabao.android.common.util.ToastUtil;
+import com.jikabao.android.merchant.R;
+import com.jikabao.android.merchant.activity.AboutActivity;
+import com.jikabao.android.merchant.storage.AppPreference;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     Button scannerButton;
     Button shareButton;
     Button generateButton;
-    TextView buildInfo;
+    Button aboutButton;
+
+    TextView userInfo;
     ImageView qrImageView;
     EditText input;
 
@@ -39,21 +44,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         scannerButton = (Button) findViewById(R.id.scannerButton);
         shareButton = (Button) findViewById(R.id.shareButton);
         generateButton = (Button) findViewById(R.id.generateButton);
+        aboutButton = (Button) findViewById(R.id.aboutButton);
         qrImageView = (ImageView) findViewById(R.id.qrImageView);
         input = (EditText) findViewById(R.id.inputEditText);
-        buildInfo = (TextView) findViewById(R.id.buildInfo);
+
+        userInfo = (TextView) findViewById(R.id.userInfo);
 
         scannerButton.setOnClickListener(this);
         shareButton.setOnClickListener(this);
         generateButton.setOnClickListener(this);
+        aboutButton.setOnClickListener(this);
 
-        buildInfo.append("" + BuildConfig.BUILD_DATE + '\n');
-        buildInfo.append("" + BuildConfig.BUILD_TYPE + '\n');
-        buildInfo.append("" + BuildConfig.GIT_BRANCH + '\n');
-        buildInfo.append("" + BuildConfig.GIT_COMMIT_ID + '\n');
-        buildInfo.append("" + BuildConfig.VERSION_NAME + '\n');
-        buildInfo.append("" + BuildConfig.VERSION_CODE + '\n');
-        buildInfo.append("" + BuildConfig.FLAVOR + '\n');
+        userInfo.setText(AppPreference.getInstance().getUserId());
+        input.setText(AppPreference.getInstance().getUserId());
+        generateQRCode(AppPreference.getInstance().getUserId());
+
     }
 
     @Override
@@ -95,10 +100,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 generateQRCode();
                 break;
 
+            case R.id.aboutButton:
+                showAbout();
+                break;
+
             default:
                 break;
         }
 
+    }
+
+    private void showAbout() {
+        Intent intent = new Intent();
+        intent.setClass(this, AboutActivity.class);
+        startActivity(intent);
     }
 
     private void startScanner() {
@@ -139,6 +154,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
+    private void generateQRCode(String text) {
+        Bitmap bitmap = BarcodeUtil.generateQRCode(text);
+        if (null != bitmap) {
+            qrImageView.setImageBitmap(bitmap);
+        }
+    }
     private void generateQRCode() {
         String text = input.getText().toString();
         if (TextUtils.isEmpty(text)) {
@@ -146,10 +167,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             return;
         }
 
-        Bitmap bitmap = BarcodeUtil.generateQRCode(text);
-        if (null != bitmap) {
-            qrImageView.setImageBitmap(bitmap);
-        }
+        generateQRCode(text);
+        userInfo.setText(text);
     }
 
 }
