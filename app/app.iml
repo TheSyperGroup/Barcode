@@ -8,12 +8,12 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="jikabaoLiveDebug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleJikabaoLiveDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileJikabaoLiveDebugSources" />
-        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleJikabaoLiveDebugTest" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateJikabaoLiveDebugSources" />
-        <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateJikabaoLiveDebugTestSources" />
+        <option name="SELECTED_BUILD_VARIANT" value="merchantLiveDebug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleMerchantLiveDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileMerchantLiveDebugSources" />
+        <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleMerchantLiveDebugTest" />
+        <option name="SOURCE_GEN_TASK_NAME" value="generateMerchantLiveDebugSources" />
+        <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateMerchantLiveDebugTestSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -23,49 +23,49 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/jikabaolive/debug" />
+    <output url="file://$MODULE_DIR$/build/intermediates/classes/merchantlive/debug" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/jikabaolive/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/jikabaolive/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/jikabaolive/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/jikabaolive/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/jikabaolive/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/jikabaolive/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLiveDebug/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabaoLive/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/jikabaolive/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/jikabaolive/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/jikabaolive/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/jikabaolive/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/jikabaolive/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/test/jikabaolive/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jikabao/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJikabao/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/merchantlive/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/merchantlive/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/merchantlive/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/merchantlive/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/merchantlive/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/merchantlive/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLiveDebug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchantLive/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/test/merchantlive/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/test/merchantlive/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/test/merchantlive/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/test/merchantlive/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/test/merchantlive/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/test/merchantlive/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/merchant/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestMerchant/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/live/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/live/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/live/assets" type="java-resource" />
@@ -125,19 +125,17 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="appcompat-v7-19.0.1" level="project" />
-    <orderEntry type="library" exported="" name="zxing-android-legacy-2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="zxing-android-integration-2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-19.0.1" level="project" />
-    <orderEntry type="library" exported="" name="apktool-lib-1.4.4-3" level="project" />
-    <orderEntry type="library" exported="" name="logback-android-core-1.0.10-2" level="project" />
-    <orderEntry type="library" exported="" name="library-1.0.6" level="project" />
-    <orderEntry type="library" exported="" name="otto-1.3.5" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-1.7.5" level="project" />
-    <orderEntry type="library" exported="" name="zxing-android-embedded-2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="logback-android-classic-1.0.10-2" level="project" />
+    <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
+    <orderEntry type="library" exported="" name="logback-android-core-1.0.10-2" level="project" />
+    <orderEntry type="library" exported="" name="apktool-lib-1.4.4-3" level="project" />
+    <orderEntry type="library" exported="" name="otto-1.3.5" level="project" />
+    <orderEntry type="library" exported="" name="library-1.0.6" level="project" />
+    <orderEntry type="module" module-name="common" exported="" />
   </component>
 </module>
 

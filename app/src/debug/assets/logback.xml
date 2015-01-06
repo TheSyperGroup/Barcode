@@ -7,7 +7,7 @@
     </appender>
 
     <!-- Custom appender will display ERRORs as some kind of notification message to the user -->
-    <appender name="NOTIFICATION" class="com.jikabao.android.util.LoggerNotificationAppender">
+    <appender name="NOTIFICATION" class="com.jikabao.android.common.util.LoggerNotificationAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>

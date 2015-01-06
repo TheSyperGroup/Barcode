@@ -33,7 +33,7 @@
 -keep class com.google.common.** {*;}
 -keep class com.loopj.android.http.** {*;}
 -keep class sun.misc.Unsafe{*;}
--keep class com.jikabao.android.model.** {*;}
+-keep class com.jikabao.android.common.model.** {*;}
 -keep public class * { public protected *; }
 -keep public class * extends android.app.Activity
 -keep public class * extends android.content.BroadcastReceiver

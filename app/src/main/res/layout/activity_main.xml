@@ -33,7 +33,7 @@
         android:gravity="center"
         android:text="Share QR Code" />
 
-    <com.jikabao.android.view.EFStyledButton
+    <com.jikabao.android.common.view.EFStyledButton
         android:layout_below="@id/shareButton"
         android:id="@+id/generateButton"
         android:layout_width="match_parent"
