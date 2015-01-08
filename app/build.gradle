@@ -64,6 +64,13 @@ android {
             keyAlias "jikabao"
             keyPassword "jikabao2015"
         }
+
+        pushup {
+            storeFile file("pushup.keystore")
+            storePassword "pjq.me"
+            keyAlias "PushUp"
+            keyPassword "pjq.me"
+        }
     }
 
     buildTypes {
@@ -71,14 +78,16 @@ android {
             minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.jikabao
+//            signingConfig signingConfigs.jikabao
+            signingConfig signingConfigs.pushup
         }
 
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.jikabao
+            signingConfig signingConfigs.pushup
+//            signingConfig signingConfigs.jikabao
         }
     }
 
@@ -88,7 +97,8 @@ android {
         // Products
         merchant {
             flavorDimension "product"
-            applicationId "com.jikabao.android.merchant"
+//            applicationId "com.jikabao.android.merchant"
+            applicationId "me.pjq.pushups"
         }
 
         // uat

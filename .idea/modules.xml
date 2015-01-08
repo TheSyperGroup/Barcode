@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/JiKa.iml" filepath="$PROJECT_DIR$/JiKa.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat_sdk_sample_android/wechat_sdk_sample_android.iml" filepath="$PROJECT_DIR$/wechat_sdk_sample_android/wechat_sdk_sample_android.iml" />
     </modules>
   </component>
 </project>

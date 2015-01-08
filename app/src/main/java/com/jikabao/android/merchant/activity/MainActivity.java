@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.jikabao.android.common.activity.BaseActivity;
+import com.jikabao.android.common.activity.WechatActivity;
 import com.jikabao.android.common.util.BarcodeUtil;
 import com.jikabao.android.common.util.ToastUtil;
 import com.jikabao.android.merchant.R;
@@ -22,11 +24,12 @@ import com.jikabao.android.merchant.activity.AboutActivity;
 import com.jikabao.android.merchant.storage.AppPreference;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends WechatActivity implements View.OnClickListener {
     Button scannerButton;
     Button shareButton;
     Button generateButton;
     Button aboutButton;
+    Button wechatLogin;
 
     TextView userInfo;
     ImageView qrImageView;
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         shareButton = (Button) findViewById(R.id.shareButton);
         generateButton = (Button) findViewById(R.id.generateButton);
         aboutButton = (Button) findViewById(R.id.aboutButton);
+        wechatLogin = (Button) findViewById(R.id.wechatButton);
         qrImageView = (ImageView) findViewById(R.id.qrImageView);
         input = (EditText) findViewById(R.id.inputEditText);
 
@@ -54,6 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         shareButton.setOnClickListener(this);
         generateButton.setOnClickListener(this);
         aboutButton.setOnClickListener(this);
+        wechatLogin.setOnClickListener(this);
 
         userInfo.setText(AppPreference.getInstance().getUserId());
         input.setText(AppPreference.getInstance().getUserId());
@@ -102,6 +107,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.aboutButton:
                 showAbout();
+                break;
+
+            case R.id.wechatButton:
+                loginWithWeixin();
                 break;
 
             default:
@@ -160,6 +169,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             qrImageView.setImageBitmap(bitmap);
         }
     }
+
     private void generateQRCode() {
         String text = input.getText().toString();
         if (TextUtils.isEmpty(text)) {
@@ -169,6 +179,47 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         generateQRCode(text);
         userInfo.setText(text);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (KeyEvent.KEYCODE_BACK == keyCode) {
+            if (pressAgainToExit()) {
+                return true;
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private long lastPressBackTime;
+    private static final int PRESS_AGAIN_LIMIT_DURATION = 3;
+
+    private boolean pressAgainToExit() {
+        long current = System.currentTimeMillis();
+        long duration = (current - lastPressBackTime) / 1000;
+
+        if (duration <= PRESS_AGAIN_LIMIT_DURATION) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+//                    exitApp();
+                    finish();
+                }
+            });
+            return true;
+        } else {
+            lastPressBackTime = current;
+            ToastUtil.showToast(getApplicationContext(), getString(R.string.press_again_to_exit));
+        }
+
+        return false;
     }
 
 }

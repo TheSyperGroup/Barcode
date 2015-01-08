@@ -1,1 +1,1 @@
-include ':app', ':common'
+include ':app', ':common', ':wechat_sdk_sample_android'

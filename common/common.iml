@@ -89,6 +89,7 @@
     <orderEntry type="library" exported="" name="zxing-android-embedded-2.0.1" level="project" />
     <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="logback-android-classic-1.0.10-2" level="project" />
+    <orderEntry type="module" module-name="wechat_sdk_sample_android" exported="" />
   </component>
 </module>
 

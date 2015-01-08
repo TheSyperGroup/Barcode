@@ -27,6 +27,8 @@ android {
 }
 
 dependencies {
+    compile project(':wechat_sdk_sample_android')
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.1.0'
 

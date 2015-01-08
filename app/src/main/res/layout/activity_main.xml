@@ -69,6 +69,14 @@
         android:layout_alignParentBottom="true"
         android:text="@string/about" />
 
+    <Button
+        android:id="@+id/wechatButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_above="@id/aboutButton"
+        android:text="@string/wechat_login" />
     <!--<net.qiujuer.genius.material.MaterialButton-->
     <!--android:id="@+id/scannerButton"-->
     <!--android:layout_width="match_parent"-->
