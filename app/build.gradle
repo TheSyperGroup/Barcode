@@ -78,16 +78,16 @@ android {
             minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.jikabao
-            signingConfig signingConfigs.pushup
+            signingConfig signingConfigs.jikabao
+//            signingConfig signingConfigs.pushup
         }
 
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.pushup
-//            signingConfig signingConfigs.jikabao
+//            signingConfig signingConfigs.pushup
+            signingConfig signingConfigs.jikabao
         }
     }
 
@@ -97,8 +97,8 @@ android {
         // Products
         merchant {
             flavorDimension "product"
-//            applicationId "com.jikabao.android.merchant"
-            applicationId "me.pjq.pushups"
+            applicationId "com.jikabao.android.merchant"
+//            applicationId "me.pjq.pushups"
         }
 
         // uat

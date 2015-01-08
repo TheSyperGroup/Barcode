@@ -18,8 +18,8 @@ import net.sourceforge.simcpux.ShowFromWXActivity;
  */
 public class WechatActivity extends BaseActivity implements IWXAPIEventHandler{
     private WeChatUtils weChatUtils;
-    private String WEIXIN_SCOPE ="snsapi_userinfo";
-//    private String WEIXIN_SCOPE ="snsapi_base";
+//    private String WEIXIN_SCOPE ="snsapi_userinfo";
+    private String WEIXIN_SCOPE ="snsapi_base";
     private String WEIXIN_STATE ="callback1234";
 
     @Override
